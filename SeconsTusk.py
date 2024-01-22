@@ -1,20 +1,20 @@
-def ValidVeirfy(a):
+def ValidVeirfy(str):
     stack = []
     verify = True
 
-    for lt in a:
-        if lt in "([{":
-            stack.append(lt)
-        elif lt in ")]}":
+    for temp in str:
+        if temp in "([{":
+            stack.append(temp)
+        elif temp in ")]}":
             if len(stack) == 0:
                 verify = False
                 break
             br = stack.pop()
-            if br == '(' and lt == ')':
+            if br == '(' and temp == ')':
                 continue
-            if br == '[' and lt == ']':
+            if br == '[' and temp == ']':
                 continue
-            if br == '{' and lt == '}':
+            if br == '{' and temp == '}':
                 continue
 
             verify = False
