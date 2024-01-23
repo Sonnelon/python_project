@@ -2,7 +2,9 @@ import random
 import time
 
 
-def start_first_task(name):
+def start_first_task():
+    print("Choose sorting algorithm Insertion 1, Selection 2, Buble 3, Merge 4, Quick 5, Heap 6")
+    name = int(input())
     print("Type 1 to fill at random, type 2 to fill yourself, type another key to exit")
     inp = input()
 
@@ -31,6 +33,8 @@ def start_first_task(name):
         buble_sort(array)
     elif name == 5:
         start_quick_sort(array)
+    elif name == 6:
+        HeapSort(array)
     elif name == 4:
         MergeSort(array)
     else:
@@ -38,9 +42,36 @@ def start_first_task(name):
 
     end_time = time.time()
 
+    print(array)
+
     print("Time spent on sorting:", end_time - start_time)
 
-    print(array)
+
+def HeapSort(array):
+    n = len(array)
+
+    for i in range(n // 2 - 1, -1, -1):
+        Heapify(array, n, i)
+
+    for i in range(n - 1, 0, -1):
+        array[i], array[0] = array[0], array[i]
+        Heapify(array, i, 0)
+
+
+def Heapify(array, n, i):
+    largest = i
+    left = i * 2 + 1
+    right = i * 2 + 2
+
+    if left < n and array[largest] > array[left]:
+        largest = left
+
+    if right < n and array[largest] > array[right]:
+        largest = right
+
+    if largest != i:
+        array[i], array[largest] = array[largest], array[i]
+        Heapify(array, n, largest)
 
 
 def fill_array(n):
